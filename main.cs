@@ -1,39 +1,23 @@
 using System;
 
-public abstract class Shape
+interface IMovable
 {
-    public abstract double GetArea();
+    void Move();
 }
 
-public class Circle : Shape
+class Car : IMovable
 {
-    private double radius;
-
-    public Circle(double radius)
+    public void Move()
     {
-        this.radius = radius;
-    }
-
-    public override double GetArea()
-    {
-        return Math.PI * radius * radius;
+        Console.WriteLine("Car is moving");
     }
 }
 
-public class Rectangle : Shape
+class Bicycle : IMovable
 {
-    private double length;
-    private double width;
-
-    public Rectangle(double length, double width)
+    public void Move()
     {
-        this.length = length;
-        this.width = width;
-    }
-
-    public override double GetArea()
-    {
-        return length * width;
+        Console.WriteLine("Bicycle is moving");
     }
 }
 
@@ -41,11 +25,11 @@ class Program
 {
     static void Main(string[] args)
     {
-        Circle circle = new Circle(5.0);
-        Console.WriteLine("Area of Circle: " + circle.GetArea());
+        IMovable car = new Car();
+        car.Move();
 
-        Rectangle rectangle = new Rectangle(4.0, 6.0);
-        Console.WriteLine("Area of Rectangle: " + rectangle.GetArea());
+        IMovable bicycle = new Bicycle();
+        bicycle.Move();
 
         Console.ReadLine();
     }
